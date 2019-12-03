@@ -1,0 +1,64 @@
+drop database laravel;
+create database laravel;
+use laravel;
+
+create table rol(id int(5) primary key auto_increment,
+nombre varchar(50));
+
+create table permiso(id int (5) primary key auto_increment,
+nombre varchar(50),
+slug varchar(50));
+
+create table permiso_rol(id int(5) primary key auto_increment,
+rol_id int(5),
+permiso_id int(5),
+constraint foreign key(rol_id)references rol(id),
+constraint foreign key(permiso_id)references permiso(id));
+
+create table usuario(id int(5) primary key auto_increment,
+usuario varchar(50),
+password varchar(100),
+nombre varchar(50));
+
+create table usuario_rol(id int(5) primary key auto_increment,
+rol_id int(5),
+usuario_id int(5),
+estado TINYINT(1),
+constraint foreign key(rol_id)references rol(id),
+constraint foreign key(usuario_id)references usuario(id));
+
+create table libro(id int(5) primary key auto_increment,
+titulo varchar(100),
+isbn varchar(30),
+autor varchar(100),
+cantidad TINYINT(2),
+editorial varchar(50),
+foto varchar(100));
+
+create table libro_prestamo(id int(5) primary key auto_increment,
+usuario_id int(5),
+libro_id int(5),
+fecha_prestamo date,
+prestado_a varchar(100),
+estado TINYINT(1),
+fecha_devolucion date,
+constraint foreign key(usuario_id)references usuario(id),
+constraint foreign key(libro_id)references libro(id));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
