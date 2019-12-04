@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearPermisoRolTabla extends Migration
+class CrearTablaPermisoRol extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,12 @@ class CrearPermisoRolTabla extends Migration
     {
         Schema::create('permiso_rol', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('rol_id');
+
+            $table->unsignedBigInteger('rol_id');
             $table->foreign('rol_id', 'fkpermisorol_rol')->references('id')->on('rol')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedInteger('permiso_id');
+            $table->unsignedBigInteger('permiso_id');
             $table->foreign('permiso_id', 'fkpermisorol_permiso')->references('id')->on('permiso')->onDelete('restrict')->onUpdate('restrict');
+            
             $table->timestamps();
         });
     }
